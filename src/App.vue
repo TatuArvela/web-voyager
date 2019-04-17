@@ -1,6 +1,6 @@
 <template>
   <Browser v-bind:title="title" v-bind:address="address" v-bind:status="status">
-    <TestPage
+    <CorporateSite
       v-on:page-loaded="updateBrowser"
       v-bind:title="title"
       v-bind:address="address"
@@ -11,12 +11,12 @@
 
 <script>
 import Browser from "./components/Browser.vue";
-import TestPage from "./components/TestPage.vue";
+import CorporateSite from "./components/CorporateSite.vue";
 
 export default {
   components: {
     Browser,
-    TestPage
+    CorporateSite
   },
   data: () => {
     return {

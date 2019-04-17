@@ -5,7 +5,9 @@
       <input class="ui-text" id="browser-address" v-model="address" />
     </div>
     <p class="ui-text has-icon" id="browser-status">{{ status }}</p>
-    <slot></slot>
+    <div id="page">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -43,7 +45,7 @@ export default {
 
 .ui-text {
   position: absolute;
-  font-family: "Microsoft Sans Serif";
+  font-family: "Microsoft Sans Serif", sans-serif;
   font-size: 11px;
   margin: 0px;
   cursor: default;
