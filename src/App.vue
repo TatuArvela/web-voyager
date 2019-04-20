@@ -1,7 +1,14 @@
 <template>
   <Browser v-bind:title="title" v-bind:address="address" v-bind:status="status">
     <CorporateSite
+      v-if="site === 'A'"
       v-on:page-loaded="updateBrowser"
+      v-bind:title="title"
+      v-bind:address="address"
+      v-bind:status="status"
+    />
+    <PageNotFound
+      v-else
       v-bind:title="title"
       v-bind:address="address"
       v-bind:status="status"
@@ -11,18 +18,21 @@
 
 <script>
 import Browser from "./components/Browser.vue";
-import CorporateSite from "./components/CorporateSite.vue";
+import CorporateSite from "./components/sites/CorporateSite.vue";
+import PageNotFound from "./components/PageNotFound.vue";
 
 export default {
   components: {
     Browser,
-    CorporateSite
+    CorporateSite,
+    PageNotFound
   },
   data: () => {
     return {
       title: "Web Voyager",
       address: "",
-      status: "Loading..."
+      status: "Loading...",
+      site: "B"
     };
   },
   methods: {
@@ -42,8 +52,8 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: black;
   min-width: 1024px;
   min-height: 768px;
+  background: black;
 }
 </style>

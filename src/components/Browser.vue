@@ -64,7 +64,7 @@ export default {
 #browser-title {
   font-weight: bold;
   color: white;
-  top: 3px;
+  top: 2px;
   left: 21px;
   &:before {
     top: -2px;
@@ -94,10 +94,10 @@ export default {
 
 #browser-status {
   height: 1em;
-  bottom: 4px;
+  bottom: 6px;
   left: 22px;
   &:before {
-    top: -2px;
+    top: -1px;
     left: -20px;
   }
 }
@@ -106,6 +106,7 @@ export default {
   position: absolute;
   display: block;
   background: white;
+  font-family: "Microsoft Sans Serif", sans-serif;
   padding: 2px;
   top: 50px;
   left: 2px;
