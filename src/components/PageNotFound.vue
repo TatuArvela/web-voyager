@@ -31,7 +31,7 @@ export default {
     status: String
   },
   mounted() {
-    this.$emit("page-loaded", {
+    this.$parent.$emit("page-loaded", {
       title: "Server not found - Web Voyager",
       status: "Ready"
     });
