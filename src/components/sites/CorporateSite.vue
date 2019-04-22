@@ -60,7 +60,7 @@ export default {
     status: String
   },
   mounted() {
-    this.$emit("page-loaded", {
+    this.$parent.$emit("page-loaded", {
       title: "Internet Frontpage - Web Voyager",
       address: "http://internet-frontpage.com",
       status: "Ready."

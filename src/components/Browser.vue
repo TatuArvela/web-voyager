@@ -6,7 +6,11 @@
     </div>
     <p class="ui-text has-icon" id="browser-status">{{ status }}</p>
     <div id="page">
-      <slot></slot>
+      <slot
+        v-bind:title="title"
+        v-bind:address="address"
+        v-bind:status="status"
+      />
     </div>
   </div>
 </template>
@@ -16,7 +20,8 @@ export default {
   props: {
     title: String,
     address: String,
-    status: String
+    status: String,
+    updateBrowser: Function
   }
 };
 </script>

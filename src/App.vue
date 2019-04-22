@@ -1,30 +1,33 @@
 <template>
-  <Browser v-bind:title="title" v-bind:address="address" v-bind:status="status">
-    <CorporateSite
-      v-if="site === 'A'"
-      v-on:page-loaded="updateBrowser"
-      v-bind:title="title"
-      v-bind:address="address"
-      v-bind:status="status"
-    />
-    <PageNotFound
-      v-else
-      v-bind:title="title"
-      v-bind:address="address"
-      v-bind:status="status"
-    />
+  <Browser
+    v-bind:title="title"
+    v-bind:address="address"
+    v-bind:status="status"
+    v-on:page-loaded="updateBrowser"
+  >
+    <CorporateSite v-if="site === 'A'" />
+    <PortalSite v-else-if="site === 'B'" />
+    <RoomSite v-else-if="site === 'C'" />
+    <VaporwaveSite v-else-if="site === 'D'" />
+    <PageNotFound v-else />
   </Browser>
 </template>
 
 <script>
 import Browser from "./components/Browser.vue";
 import CorporateSite from "./components/sites/CorporateSite.vue";
+import PortalSite from "./components/sites/PortalSite.vue";
+import RoomSite from "./components/sites/RoomSite.vue";
+import VaporwaveSite from "./components/sites/VaporwaveSite.vue";
 import PageNotFound from "./components/PageNotFound.vue";
 
 export default {
   components: {
     Browser,
     CorporateSite,
+    PortalSite,
+    RoomSite,
+    VaporwaveSite,
     PageNotFound
   },
   data: () => {
@@ -32,7 +35,7 @@ export default {
       title: "Web Voyager",
       address: "",
       status: "Loading...",
-      site: "B"
+      site: "A"
     };
   },
   methods: {
