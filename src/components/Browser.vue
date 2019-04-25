@@ -37,6 +37,15 @@ export default {
   transform: translate(-50%, -50%);
   margin: 0 auto;
   background: url("../assets/browser-border.png");
+  cursor: url("../assets/cursor.png"), auto;
+}
+
+a {
+  cursor: url("../assets/cursor-pointer.png"), auto;
+}
+
+input, p, h1, h2, h3, h4, h5, h6, li {
+  cursor: url("../assets/cursor-text.png"), auto;
 }
 
 ::selection {
@@ -53,7 +62,7 @@ export default {
   font-family: "Microsoft Sans Serif", sans-serif;
   font-size: 11px;
   margin: 0px;
-  cursor: default;
+  cursor: url("../assets/cursor.png"), auto;;
   user-select: none;
 }
 
@@ -89,7 +98,7 @@ export default {
     user-select: initial;
     padding: 3px;
     border: 0px;
-    cursor: text;
+    cursor: url("../assets/cursor-text.png"), auto;
     //&:focus {
     //  color: white;
     //  background: #000080;
