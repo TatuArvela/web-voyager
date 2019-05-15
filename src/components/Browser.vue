@@ -44,7 +44,15 @@ a {
   cursor: url("../assets/cursor-pointer.png"), auto;
 }
 
-input, p, h1, h2, h3, h4, h5, h6, li {
+input,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li {
   cursor: url("../assets/cursor-text.png"), auto;
 }
 
@@ -62,7 +70,7 @@ input, p, h1, h2, h3, h4, h5, h6, li {
   font-family: "Microsoft Sans Serif", sans-serif;
   font-size: 11px;
   margin: 0px;
-  cursor: url("../assets/cursor.png"), auto;;
+  cursor: url("../assets/cursor.png"), auto;
   user-select: none;
 }
 
@@ -90,6 +98,16 @@ input, p, h1, h2, h3, h4, h5, h6, li {
   &:before {
     top: 24px;
     left: 59px;
+  }
+  &:after {
+    position: absolute;
+    display: block;
+    height: 16px;
+    width: 16px;
+    content: "";
+    background: url("../assets/icon-animated.gif");
+    top: 24px;
+    right: 13px;
   }
   > #browser-address {
     top: 23px;
@@ -126,5 +144,7 @@ input, p, h1, h2, h3, h4, h5, h6, li {
   left: 2px;
   right: 2px;
   bottom: 23px;
+  height: 691px;
+  overflow: auto;
 }
 </style>

@@ -1,4 +1,4 @@
-# web-voyager
+# Web Voyager
 
 ## Project setup
 
