@@ -5,7 +5,7 @@
     v-bind:status="status"
     v-on:page-loaded="updateBrowser"
   >
-    <CorporateSite v-if="site === 'A'" />
+    <CorporationSite v-if="site === 'A'" />
     <PortalSite v-else-if="site === 'B'" />
     <RoomSite v-else-if="site === 'C'" />
     <VaporwaveSite v-else-if="site === 'D'" />
@@ -15,7 +15,7 @@
 
 <script>
 import Browser from "./components/Browser.vue";
-import CorporateSite from "./components/sites/CorporateSite.vue";
+import CorporationSite from "./components/sites/CorporationSite.vue";
 import PortalSite from "./components/sites/PortalSite.vue";
 import RoomSite from "./components/sites/RoomSite.vue";
 import VaporwaveSite from "./components/sites/VaporwaveSite.vue";
@@ -24,7 +24,7 @@ import PageNotFound from "./components/PageNotFound.vue";
 export default {
   components: {
     Browser,
-    CorporateSite,
+    CorporationSite,
     PortalSite,
     RoomSite,
     VaporwaveSite,
