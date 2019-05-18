@@ -49,14 +49,16 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  min-width: 1024px;
-  min-height: 768px;
-  background: black;
-}
+<style lang="sass">
+body
+  margin: 0
+  width: 100vw
+  min-width: 1024px
+  height: 100vh
+  min-height: 768px
+  background: black
+  display: flex
+  justify-content: center
+  align-items: center
+  overflow: auto
 </style>
