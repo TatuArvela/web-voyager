@@ -26,23 +26,17 @@ export default {
 };
 </script>
 
-<style lang="scss">
-#browser {
-  display: block;
-  width: 1024px;
-  height: 768px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0 auto;
-  background: url("../assets/browser-border.png");
-  cursor: url("../assets/cursor.png"), auto;
-}
+<style lang="sass">
+#browser
+  display: block
+  position: relative
+  width: 1024px
+  height: 768px
+  background: url("../assets/browser-border.png")
+  cursor: url("../assets/cursor.png"), auto
 
-a {
-  cursor: url("../assets/cursor-pointer.png"), auto;
-}
+a
+  cursor: url("../assets/cursor-pointer.png"), auto
 
 input,
 p,
@@ -52,99 +46,86 @@ h3,
 h4,
 h5,
 h6,
-li {
-  cursor: url("../assets/cursor-text.png"), auto;
-}
+li
+  cursor: url("../assets/cursor-text.png"), auto
 
-::selection {
-  color: white;
-  background: #000080;
-}
-::-moz-selection {
-  color: white;
-  background: #000080;
-}
+::selection
+  color: white
+  background: #000080
 
-.ui-text {
-  position: absolute;
-  font-family: "Microsoft Sans Serif", sans-serif;
-  font-size: 11px;
-  margin: 0px;
-  cursor: url("../assets/cursor.png"), auto;
-  user-select: none;
-}
+::-moz-selection
+  color: white
+  background: #000080
 
-.has-icon:before {
-  position: absolute;
-  display: block;
-  height: 16px;
-  width: 16px;
-  content: "";
-  background: url("../assets/icon.png");
-}
+.ui-text
+  position: absolute
+  font-family: "Microsoft Sans Serif", sans-serif
+  font-size: 11px
+  margin: 0px
+  cursor: url("../assets/cursor.png"), auto
+  user-select: none
 
-#browser-title {
-  font-weight: bold;
-  color: white;
-  top: 2px;
-  left: 21px;
-  &:before {
-    top: -2px;
-    left: -19px;
-  }
-}
+.has-icon:before
+  position: absolute
+  display: block
+  height: 16px
+  width: 16px
+  content: ""
+  background: url("../assets/icon.png")
 
-#browser-addressbar {
-  &:before {
-    top: 24px;
-    left: 59px;
-  }
-  &:after {
-    position: absolute;
-    display: block;
-    height: 16px;
-    width: 16px;
-    content: "";
-    background: url("../assets/icon-animated.gif");
-    top: 24px;
-    right: 13px;
-  }
-  > #browser-address {
-    top: 23px;
-    left: 75px;
-    width: 899px;
-    user-select: initial;
-    padding: 3px;
-    border: 0px;
-    cursor: url("../assets/cursor-text.png"), auto;
-    //&:focus {
-    //  color: white;
-    //  background: #000080;
-    //}
-  }
-}
+#browser-title
+  font-weight: bold
+  color: white
+  top: 2px
+  left: 21px
+  &:before
+    top: -2px
+    left: -19px
 
-#browser-status {
-  height: 1em;
-  bottom: 6px;
-  left: 22px;
-  &:before {
-    top: -1px;
-    left: -20px;
-  }
-}
+#browser-addressbar
+  &:before
+    top: 24px
+    left: 59px
+  &:after
+    position: absolute
+    display: block
+    height: 16px
+    width: 16px
+    content: ""
+    background: url("../assets/icon-animated.gif")
+    top: 24px
+    right: 13px
+  > #browser-address
+    top: 23px
+    left: 75px
+    width: 899px
+    user-select: initial
+    padding: 3px
+    border: 0px
+    cursor: url("../assets/cursor-text.png"), auto
+    //&:focus
+    //  color: white
+    //  background: #000080
+    //
 
-#page {
-  position: absolute;
-  display: block;
-  background: white;
-  font-family: "Microsoft Sans Serif", sans-serif;
-  padding: 2px;
-  top: 50px;
-  left: 2px;
-  right: 2px;
-  bottom: 23px;
-  height: 691px;
-  overflow: auto;
-}
+#browser-status
+  height: 1em
+  bottom: 6px
+  left: 22px
+  &:before
+    top: -1px
+    left: -20px
+
+#page
+  position: absolute
+  display: block
+  background: white
+  font-family: "Microsoft Sans Serif", sans-serif
+  padding: 2px
+  top: 50px
+  left: 2px
+  right: 2px
+  bottom: 23px
+  height: 691px
+  overflow: auto
 </style>
