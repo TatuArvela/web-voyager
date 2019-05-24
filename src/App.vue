@@ -2,7 +2,7 @@
   <div id="browser">
     <p class="ui-text has-icon" id="browser-title">{{ title }}</p>
     <div class="has-icon" id="browser-addressbar">
-      <input class="ui-text" id="browser-address" v-model="address" />
+      <input class="ui-text" id="browser-address" v-model="address" disabled />
     </div>
     <p class="ui-text has-icon" id="browser-status">{{ status }}</p>
     <div id="page">
