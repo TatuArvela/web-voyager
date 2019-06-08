@@ -167,7 +167,7 @@ li
     width: 16px
     content: ""
     top: 24px
-    left: 59px
+    left: 4px
     background: url("./assets/icon.png")
   &:before
     top: 24px
@@ -175,8 +175,8 @@ li
     background: url("./assets/icon-animated.gif")
   > #browser-address
     top: 23px
-    left: 59px
-    width: 901px
+    left: 4px
+    width: 956px
     height: 13px
     user-select: initial
     padding: 3px
