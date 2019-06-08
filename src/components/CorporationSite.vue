@@ -327,7 +327,7 @@
                 <strong>Corporation&reg; Enterprise&trade;</strong> right now!
                 Start your free trial immediately, and learn to
               </p>
-              <ul>
+              <ul style="margin-top:12px;font-size:13px;">
                 <li>interactively synthesize performance based ROI.</li>
                 <li>seamlessly redefine robust quality vectors</li>
                 <li>phosfluorescently grow B2B methods of empowerment</li>
@@ -389,11 +389,17 @@ img
   animation-name: image-loading
   animation-timing-function: steps(24)
 
-img:nth-of-type(odd)
+table:nth-of-type(odd) img
   animation-duration: 7s
 
-img:nth-of-type(even)
+table:nth-of-type(even) img
   animation-duration: 9s
+
+table:nth-of-type(4) img
+  animation: none !important
+  content: url('../assets/broken-image.png')
+  padding: 5px
+  border: 1px inset lightgray
 
 @keyframes image-loading
   50%
