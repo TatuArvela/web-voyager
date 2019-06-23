@@ -68,6 +68,10 @@ body
   justify-content: center
   align-items: center
   overflow: auto
+  > *
+    cursor: url("./assets/cursor.png"), auto
+    animation-name: browser-loading-cursor
+    animation-duration: 5s
 
 #browser
   display: block
@@ -78,42 +82,38 @@ body
   background-repeat: no-repeat
   background-attachment: fixed
   background-position: center
-  cursor: url("./assets/cursor.png"), auto
-  animation-name: browser-loading-1
-  animation-duration: 2s
+  animation-name: browser-loading-1, browser-loading-cursor
+  animation-duration: 2s, 5s
 
 @keyframes browser-loading-1
-  from
+  from, to
     background-color: teal
     background-image: none
-  to
-    background-color: teal
-    background-image: none
+
+#browser-title,
+#browser-addressbar,
+#browser-status,
+#page
+  animation-name: browser-loading-2
 
 #browser-title
-  animation-name: browser-loading-2
   animation-duration: 2.5s
 
-#browser-addressbar
-  animation-name: browser-loading-2
-  animation-duration: 3.5s
-
+#browser-addressbar,
 #browser-status
-  animation-name: browser-loading-2
   animation-duration: 3.5s
 
 #page
-  animation-name: browser-loading-2
   animation-duration: 5s
 
 @keyframes browser-loading-2
-  from
-    opacity: 0
-  to
+  from, to
     opacity: 0
 
 a
   cursor: url("./assets/cursor-pointer.png"), auto
+  animation-name: browser-loading-cursor
+  animation-duration: 5s
 
 input,
 p,
@@ -123,8 +123,15 @@ h3,
 h4,
 h5,
 h6,
-li
+li,
+#browser-address
   cursor: url("./assets/cursor-text.png"), auto
+  animation-name: browser-loading-cursor
+  animation-duration: 5s
+
+@keyframes browser-loading-cursor
+  from, to
+    cursor: url("./assets/cursor-loading.png"), auto
 
 ::selection
   color: white
@@ -182,7 +189,6 @@ li
     padding: 3px
     padding-left: 18px
     border: 0px
-    cursor: url("./assets/cursor-text.png"), auto
     background: #c0c0c0
     &:focus
       outline: none
