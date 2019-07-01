@@ -1,56 +1,131 @@
 <template>
-  <div id="browser">
+  <div id="browser" v-bind:class="'loadingPhase-' + [loadingPhase]">
     <p class="ui-text has-icon" id="browser-title">{{ title }}</p>
     <div class="has-icon" id="browser-addressbar">
       <input class="ui-text" id="browser-address" v-model="address" disabled />
     </div>
     <p class="ui-text has-icon" id="browser-status">{{ status }}</p>
     <div id="page">
-      <CorporationSite
-        v-if="site === 'A'"
-        :title="title"
-        :address="address"
-        :status="status"
-        @updateBrowser="updateBrowser"
-      />
-      <PortalSite v-else-if="site === 'B'" />
-      <RoomSite v-else-if="site === 'C'" />
-      <VaporwaveSite v-else-if="site === 'D'" />
-      <PageNotFound v-else />
+      <fragment v-if="loadingPhase < 2">
+        <CorporationPage
+          v-if="page === 'A'"
+          :title="title"
+          :address="address"
+          :status="status"
+          @loadPage="loadPage"
+          @openRandomPage="openRandomPage"
+        />
+        <PortalPage
+          v-else-if="page === 'B'"
+          @loadPage="loadPage"
+          @openRandomPage="openRandomPage"
+        />
+        <RoomPage
+          v-else-if="page === 'C'"
+          @loadPage="loadPage"
+          @openRandomPage="openRandomPage"
+        />
+        <VaporwavePage
+          v-else-if="page === 'D'"
+          @loadPage="loadPage"
+          @openRandomPage="openRandomPage"
+        />
+        <PageNotFound
+          v-else
+          @loadPage="loadPage"
+          @openRandomPage="openRandomPage"
+        />
+      </fragment>
     </div>
   </div>
 </template>
 
 <script>
-import CorporationSite from "./components/CorporationSite.vue";
-import PortalSite from "./components/PortalSite.vue";
-import RoomSite from "./components/RoomSite.vue";
-import VaporwaveSite from "./components/VaporwaveSite.vue";
-import PageNotFound from "./components/PageNotFound.vue";
+import CorporationPage from "./pages/CorporationPage.vue";
+import PageNotFound from "./pages/PageNotFound.vue";
+import PortalPage from "./pages/PortalPage.vue";
+import RoomPage from "./pages/RoomPage.vue";
+import VaporwavePage from "./pages/VaporwavePage.vue";
+
+/*
+Loading phases
+  5: Operating system
+  4: Browser window, @2000ms
+  3: Browser window title @2500ms
+  2: Browser window features @3500ms
+  1: Page content @5000ms
+  0: Ready @7000ms
+*/
+
+const pages = ["A", "B", "C", "D"];
 
 export default {
   components: {
-    CorporationSite,
-    PortalSite,
-    RoomSite,
-    VaporwaveSite,
-    PageNotFound
+    CorporationPage,
+    PageNotFound,
+    PortalPage,
+    RoomPage,
+    VaporwavePage
   },
   data: () => {
     return {
       title: "Web Voyager",
       address: "",
       status: "Loading...",
-      site: "A"
+      page: null,
+      loadingPhase: null,
+      timeout: null
     };
   },
+  mounted() {
+    this.loadBrowser();
+    this.openRandomPage();
+  },
   methods: {
-    updateBrowser(data) {
-      console.log("But can you do this?");
+    loadBrowser() {
+      let self = this;
+      self.loadingPhase = 5;
+      self.timeout = setTimeout(() => {
+        self.loadingPhase = 4;
+        self.timeout = setTimeout(() => {
+          self.loadingPhase = 3;
+          self.timeout = setTimeout(() => {
+            self.loadingPhase = 2;
+            self.timeout = setTimeout(() => {
+              self.loadingPhase = 1;
+              self.timeout = null;
+            }, 1500);
+          }, 1000);
+        }, 500);
+      }, 2000);
+    },
+    loadPage(data) {
       document.title = data.title;
       this.title = data.title;
       this.address = data.address;
-      this.status = data.status;
+      this.status = "Loading...";
+      this.loadingPhase = 1;
+      if (data.skipLoad === true) {
+        this.finishLoading();
+      } else {
+        this.timeout = setTimeout(() => this.finishLoading(), 2000);
+      }
+    },
+    finishLoading() {
+      this.status = "Ready";
+      this.loadingPhase = 0;
+    },
+    openRandomPage() {
+      let randomPage = this.page;
+      while (randomPage === this.page) {
+        randomPage =
+          pages[
+            Math.floor(
+              Math.random() * (pages.length + 1) // for random "PageNotFound"
+            )
+          ];
+      }
+      this.page = randomPage;
     }
   }
 };
@@ -67,11 +142,15 @@ body
   display: flex
   justify-content: center
   align-items: center
-  overflow: auto
-  > *
-    cursor: url("./assets/cursor.png"), auto
-    animation-name: browser-loading-cursor
-    animation-duration: 5s
+  overflow: hidden
+
+::selection
+  color: white
+  background: #000080
+
+::-moz-selection
+  color: white
+  background: #000080
 
 #browser
   display: block
@@ -82,38 +161,14 @@ body
   background-repeat: no-repeat
   background-attachment: fixed
   background-position: center
-  animation-name: browser-loading-1, browser-loading-cursor
-  animation-duration: 2s, 5s
-
-@keyframes browser-loading-1
-  from, to
+  cursor: url("./assets/cursor.png"), auto
+  &.loadingPhase-5
     background-color: teal
     background-image: none
-
-#browser-title,
-#browser-addressbar,
-#browser-status,
-#page
-  animation-name: browser-loading-2
-
-#browser-title
-  animation-duration: 2.5s
-
-#browser-addressbar,
-#browser-status
-  animation-duration: 3.5s
-
-#page
-  animation-duration: 5s
-
-@keyframes browser-loading-2
-  from, to
-    opacity: 0
-
-a
-  cursor: url("./assets/cursor-pointer.png"), auto
-  animation-name: browser-loading-cursor
-  animation-duration: 5s
+  &.loadingPhase-5,
+  &.loadingPhase-4,
+  &.loadingPhase-3
+    cursor: url("./assets/cursor-loading.png"), auto
 
 input,
 p,
@@ -123,23 +178,11 @@ h3,
 h4,
 h5,
 h6,
-li,
-#browser-address
+li
   cursor: url("./assets/cursor-text.png"), auto
-  animation-name: browser-loading-cursor
-  animation-duration: 5s
 
-@keyframes browser-loading-cursor
-  from, to
-    cursor: url("./assets/cursor-loading.png"), auto
-
-::selection
-  color: white
-  background: #000080
-
-::-moz-selection
-  color: white
-  background: #000080
+a
+  cursor: url("./assets/cursor-pointer.png"), auto
 
 .ui-text
   position: absolute
@@ -161,12 +204,18 @@ li,
   color: white
   top: 2px
   left: 21px
+  .loadingPhase-5 &
+    opacity: 0
+
   &:before
     top: -2px
     left: -19px
     background: url("./assets/icon.png")
 
 #browser-addressbar
+  .loadingPhase-5 &,
+  .loadingPhase-4 &
+    opacity: 0
   &:after
     position: absolute
     display: block
@@ -190,6 +239,11 @@ li,
     padding-left: 18px
     border: 0px
     background: #c0c0c0
+    cursor: url("./assets/cursor.png"), auto
+    .loadingPhase-5 &,
+    .loadingPhase-4 &,
+    .loadingPhase-3 &
+      cursor: url("./assets/cursor-loading.png"), auto
     &:focus
       outline: none
 
@@ -197,6 +251,9 @@ li,
   height: 1em
   bottom: 6px
   left: 22px
+  .loadingPhase-5 &,
+  .loadingPhase-4 &
+    opacity: 0
   &:before
     top: -1px
     left: -20px
@@ -214,4 +271,25 @@ li,
   bottom: 23px
   height: 691px
   overflow: auto
+  .loadingPhase-5 &,
+  .loadingPhase-4 &,
+  .loadingPhase-3 &,
+  .loadingPhase-2 &
+    opacity: 0
+  & img
+    animation-name: image-loading
+    animation-timing-function: steps(24)
+    animation-duration: 2000ms
+
+.img-broken
+  animation: none !important
+  content: url('./assets/broken-image.png')
+  padding: 5px
+  border: 1px inset lightgray
+
+@keyframes image-loading
+  0%
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0)
+  100%
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
 </style>
