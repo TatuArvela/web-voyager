@@ -1,5 +1,7 @@
 # Web Voyager
 
+![Web Voyager](./src/assets/logo.png?raw=true "Web Voyager")
+
 ## Project setup
 
 ```sh

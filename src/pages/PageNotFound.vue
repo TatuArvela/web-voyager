@@ -8,18 +8,13 @@
     </p>
     <hr />
     <p>
-      Please try the following:
+      Please click
+      <a href="#" @click.prevent="openRandomPage()">here</a> to go somewhere
+      else.
     </p>
-    <ul>
-      <li>
-        If you typed the page address in the Address bar, make sure that it is
-        spelled correctly.
-      </li>
-      <li>Click the Back button to try another link.</li>
-    </ul>
     <p>
-      HTTP 404 - File not found<br />
-      Web Voyager
+      HTTP 404 - File not found
+      <br />Web Voyager
     </p>
   </div>
 </template>
@@ -31,10 +26,16 @@ export default {
     status: String
   },
   mounted() {
-    this.$parent.$emit("page-loaded", {
+    this.$emit("loadPage", {
       title: "Server not found - Web Voyager",
-      status: "Ready"
+      address: "error://some.unknown.website",
+      skipLoad: true
     });
+  },
+  methods: {
+    openRandomPage() {
+      this.$emit("openRandomPage");
+    }
   }
 };
 </script>
@@ -45,6 +46,7 @@ export default {
 }
 img {
   margin-top: 5px;
+  animation: none !important;
 }
 h1 {
   position: relative;

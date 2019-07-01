@@ -3,16 +3,17 @@
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
       <tr>
         <td bgcolor="#FFFFFF" valign="TOP" width="250" rowspan="2">
-          <a href=""
-            ><img
+          <a href="#" @click.prevent="openRandomPage()">
+            <img
               style="margin-bottom:-5px;"
               src="../assets/enterprise/enterprise-logo.gif"
               border="0"
-          /></a>
+            />
+          </a>
         </td>
         <td bgcolor="#FFFFFF" valign="TOP" height="20" width="19" align="RIGHT">
           <img
-            style="margin-bottom:-5px;top: -1px; position: relative;"
+            style="margin-bottom:-5px; position: relative;"
             src="../assets/enterprise/curve.gif"
           />
         </td>
@@ -21,25 +22,31 @@
           valign="MIDDLE"
           height="20"
           align="RIGHT"
-          nowrap=""
+          nowrap
           colspan="2"
         >
           <font color="#FFFFFF" face="Verdana, Arial, Helvetica" size="1">
-            &nbsp;&nbsp;<a
+            &nbsp;&nbsp;
+            <a
               style="color:#FFFFFF;text-decoration:none;"
-              href=""
-              target="_top"
-              ><font color="#FFFFFF">Enterprise Product Catalog</font></a
-            >&nbsp;&nbsp;<font color="#FFFFFF">|</font> &nbsp;&nbsp;<a
+              href="#"
+              @click.prevent="openRandomPage()"
+            >
+              <font color="#FFFFFF">Enterprise Product Catalog</font> </a
+            >&nbsp;&nbsp; <font color="#FFFFFF">|</font> &nbsp;&nbsp;
+            <a
               style="color:#FFFFFF;text-decoration:none;"
-              href=""
-              target="_top"
-              ><font color="#FFFFFF">Contact Assistance</font></a
-            >&nbsp;&nbsp;<font color="#FFFFFF">|</font> &nbsp;&nbsp;<a
+              href="#"
+              @click.prevent="openRandomPage()"
+            >
+              <font color="#FFFFFF">Contact Assistance</font> </a
+            >&nbsp;&nbsp; <font color="#FFFFFF">|</font> &nbsp;&nbsp;
+            <a
               style="color:#FFFFFF;text-decoration:none;"
-              href=""
-              target="_top"
-              ><font color="#FFFFFF">Corporation Guide</font></a
+              href="#"
+              @click.prevent="openRandomPage()"
+            >
+              <font color="#FFFFFF">Corporation Guide</font> </a
             >&nbsp;&nbsp;
           </font>
         </td>
@@ -54,39 +61,49 @@
           width="112"
           align="RIGHT"
         >
-          <a href=""
-            ><img
+          <a href="#" @click.prevent="openRandomPage()">
+            <img
               style="margin-bottom:-5px;"
               src="../assets/enterprise/corporation-logo.gif"
               border="0"
-          /></a>
+            />
+          </a>
         </td>
       </tr>
       <tr>
-        <td bgcolor="#000000" valign="MIDDLE" height="20" colspan="4" nowrap="">
+        <td bgcolor="#000000" valign="MIDDLE" height="20" colspan="4" nowrap>
           <font color="#FFFFFF" face="Verdana, Arial, Helvetica" size="1">
             <b>
-              &nbsp;&nbsp;<a
+              &nbsp;&nbsp;
+              <a
                 style="color:#FFFFFF;text-decoration:none;"
-                href=""
-                target="_top"
-                ><font color="#FFFFFF">Enterprise Front Page</font></a
-              >&nbsp;&nbsp;<font color="#FFFFFF">|</font>&nbsp;&nbsp;<a
+                href="#"
+                @click.prevent="openRandomPage()"
+              >
+                <font color="#FFFFFF">Enterprise Front Page</font> </a
+              >&nbsp;&nbsp; <font color="#FFFFFF">|</font>&nbsp;&nbsp;
+              <a
                 style="color:#FFFFFF;text-decoration:none;"
-                href=""
-                target="_top"
-                ><font color="#FFFFFF">Corporation Enterprise SKUs</font></a
-              >&nbsp;&nbsp;<font color="#FFFFFF">|</font>&nbsp;&nbsp;<a
+                href="#"
+                @click.prevent="openRandomPage()"
+              >
+                <font color="#FFFFFF">Corporation Enterprise SKUs</font> </a
+              >&nbsp;&nbsp; <font color="#FFFFFF">|</font>&nbsp;&nbsp;
+              <a
                 style="color:#FFFFFF;text-decoration:none;"
-                href=""
-                target="_top"
-                ><font color="#FFFFFF">Commonly Inquired Requests</font></a
-              >&nbsp;&nbsp;<font color="#FFFFFF">|</font>&nbsp;&nbsp;<a
+                href="#"
+                @click.prevent="openRandomPage()"
+              >
+                <font color="#FFFFFF">Commonly Inquired Requests</font> </a
+              >&nbsp;&nbsp; <font color="#FFFFFF">|</font>&nbsp;&nbsp;
+              <a
                 style="color:#FFFFFF;text-decoration:none;"
-                href=""
-                target="_top"
-                ><font color="#FFFFFF">Worldwide Service</font></a
-              >&nbsp;&nbsp;<font color="#FFFFFF">|</font>
+                href="#"
+                @click.prevent="openRandomPage()"
+              >
+                <font color="#FFFFFF">Worldwide Service</font> </a
+              >&nbsp;&nbsp;
+              <font color="#FFFFFF">|</font>
             </b>
           </font>
         </td>
@@ -112,23 +129,23 @@
               <td>
                 <ul style="font-size:12px;padding-left:14px;">
                   <li style="margin-bottom:4px;">
-                    <a href="#"
-                      >Order
+                    <a href="#" @click.prevent="openRandomPage()">
+                      Order
                       <strong>Corporation&reg; Enterprise&trade;</strong>
-                      Online</a
-                    >
+                      Online
+                    </a>
                   </li>
                   <li style="margin-bottom:4px;">
-                    <a href="#"
-                      ><strong>Corporation&reg; Enterprise&trade;</strong>
-                      Tour</a
-                    >
+                    <a href="#" @click.prevent="openRandomPage()">
+                      <strong>Corporation&reg; Enterprise&trade;</strong>
+                      Tour
+                    </a>
                   </li>
                   <li style="margin-bottom:4px;">
-                    <a href="#"
-                      ><strong>Corporation&reg; Enterprise&trade;</strong> Free
-                      Trial</a
-                    >
+                    <a href="#" @click.prevent="openRandomPage()">
+                      <strong>Corporation&reg; Enterprise&trade;</strong> Free
+                      Trial
+                    </a>
                   </li>
                 </ul>
               </td>
@@ -304,9 +321,9 @@
                 Educational entities are entitled to discounted rates of
                 <strong>Corporation&reg; Enterprise&trade;</strong> licenses,
                 including
-                <strong
-                  >Corporation&reg; Enterprise&trade; 1999 Platinum
-                  Edition&trade;</strong
+                <strong>
+                  Corporation&reg; Enterprise&trade; 1999 Platinum
+                  Edition&trade; </strong
                 >. This is <strong>Corporation&reg;</strong>'s core philosophy
                 to progressively develop next-generation niche markets and
                 authoritatively generate business users.
@@ -345,12 +362,12 @@
       <tr>
         <td align="CENTER" colspan="4">
           <hr width="100%" height="1" vspace="10" />
-          <font face="Arial" size="1"
-            ><a href=""
+          <font face="Arial" size="1">
+            <a href="#" @click.prevent="openRandomPage()"
               >© 1999 Corporation. All rights reserved. Terms of use.</a
             >
-            <p></p
-          ></font>
+            <p></p>
+          </font>
         </td>
       </tr>
     </table>
@@ -365,45 +382,15 @@ export default {
     status: String
   },
   mounted() {
-    var self = this;
-    setTimeout(function() {
-      self.$emit("updateBrowser", {
-        title: "Corporation Enterprise - Web Voyager",
-        address: "http://corporation.com/enterprise",
-        status: "Loading..."
-      });
-    }, 5000);
-    setTimeout(function() {
-      self.$emit("updateBrowser", {
-        title: "Corporation Enterprise - Web Voyager",
-        address: "http://corporation.com/enterprise",
-        status: "Ready."
-      });
-    }, 8000);
+    this.$emit("loadPage", {
+      title: "Corporation Enterprise - Web Voyager",
+      address: "business://corporation.com/enterprise"
+    });
+  },
+  methods: {
+    openRandomPage() {
+      this.$emit("openRandomPage");
+    }
   }
 };
 </script>
-
-<style lang="sass">
-img
-  animation-name: image-loading
-  animation-timing-function: steps(24)
-
-table:nth-of-type(odd) img
-  animation-duration: 7s
-
-table:nth-of-type(even) img
-  animation-duration: 9s
-
-table:nth-of-type(4) img
-  animation: none !important
-  content: url('../assets/broken-image.png')
-  padding: 5px
-  border: 1px inset lightgray
-
-@keyframes image-loading
-  50%
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0)
-  100%
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%)
-</style>
