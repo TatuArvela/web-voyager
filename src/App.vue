@@ -142,7 +142,7 @@ body
   display: flex
   justify-content: center
   align-items: center
-  overflow: hidden
+  overflow: auto
 
 ::selection
   color: white
@@ -159,7 +159,6 @@ body
   height: 768px
   background: url("./assets/browser-border.png")
   background-repeat: no-repeat
-  background-attachment: fixed
   background-position: center
   cursor: url("./assets/cursor.png"), auto
   &.loadingPhase-5
@@ -269,7 +268,6 @@ a
   left: 2px
   right: 2px
   bottom: 23px
-  height: 691px
   overflow: auto
   .loadingPhase-5 &,
   .loadingPhase-4 &,
