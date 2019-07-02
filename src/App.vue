@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { randomString } from "./utils";
 import CorporationPage from "./pages/CorporationPage.vue";
 import PageNotFound from "./pages/PageNotFound.vue";
 import PortalPage from "./pages/PortalPage.vue";
@@ -57,7 +58,7 @@ Loading phases
   0: Ready @7000ms
 */
 
-const pages = ["A", "B", "C", "D"];
+const pages = ["A", "B", "C", "D", "NotFound"];
 
 export default {
   components: {
@@ -118,12 +119,7 @@ export default {
     openRandomPage() {
       let randomPage = this.page;
       while (randomPage === this.page) {
-        randomPage =
-          pages[
-            Math.floor(
-              Math.random() * (pages.length + 1) // for random "PageNotFound"
-            )
-          ];
+        randomPage = randomString(pages);
       }
       this.page = randomPage;
     }
@@ -169,7 +165,7 @@ body
   &.loadingPhase-3
     cursor: url("./assets/cursor-loading.png"), auto
 
-input,
+input[type="text"],
 p,
 h1,
 h2,
@@ -182,6 +178,7 @@ li
 
 a
   cursor: url("./assets/cursor-pointer.png"), auto
+  color: blue
 
 .ui-text
   position: absolute
@@ -231,11 +228,11 @@ a
   > #browser-address
     top: 23px
     left: 4px
-    width: 956px
+    width: 954px
     height: 13px
     user-select: initial
     padding: 3px
-    padding-left: 18px
+    padding-left: 20px
     border: 0px
     background: #c0c0c0
     cursor: url("./assets/cursor.png"), auto
@@ -278,6 +275,16 @@ a
     animation-name: image-loading
     animation-timing-function: steps(24)
     animation-duration: 2000ms
+  & input
+    border: 1px solid gray
+    border-radius: 0
+    font-family: Arial
+    outline: none
+    font-size: 12px
+    margin-right: 2px
+    &[type="button"]
+      border-style: outset
+      background: lightgray
 
 .img-broken
   animation: none !important

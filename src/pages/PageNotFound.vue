@@ -19,6 +19,78 @@
   </div>
 </template>
 <script>
+import { randomString } from "../utils";
+const addressStrings = [
+  "???",
+  "404",
+  "aiee",
+  "annoyed",
+  "beep",
+  "blue",
+  "boom",
+  "boop",
+  "bounced",
+  "broken",
+  "cold",
+  "confused",
+  "crash",
+  "darkness",
+  "dead",
+  "death",
+  "denied",
+  "disconnected",
+  "disgruntled",
+  "disoriented",
+  "disposed",
+  "down",
+  "dropped",
+  "emptiness",
+  "empty",
+  "error",
+  "evil",
+  "explosion",
+  "found",
+  "garbage",
+  "glitch",
+  "gone",
+  "happened",
+  "hidden",
+  "hmm",
+  "hollow",
+  "hurts",
+  "impolite",
+  "it",
+  "loose",
+  "lost",
+  "mad",
+  "no",
+  "none",
+  "not",
+  "nothing",
+  "occurred",
+  "of",
+  "offline",
+  "oof",
+  "ouch",
+  "ow",
+  "owie",
+  "page",
+  "pain",
+  "painful",
+  "redirected",
+  "rejected",
+  "response",
+  "sad",
+  "scattered",
+  "screen",
+  "shattered",
+  "shutdown",
+  "sobbing",
+  "unknown",
+  "untidy",
+  "zap"
+];
+
 export default {
   props: {
     title: String,
@@ -26,9 +98,12 @@ export default {
     status: String
   },
   mounted() {
+    const address = `${randomString(addressStrings)}://${randomString(
+      addressStrings
+    )}.${randomString(addressStrings)}.${randomString(addressStrings)}`;
     this.$emit("loadPage", {
       title: "Server not found - Web Voyager",
-      address: "error://some.unknown.website",
+      address: address,
       skipLoad: true
     });
   },

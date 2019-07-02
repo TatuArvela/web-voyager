@@ -375,6 +375,29 @@
 </template>
 
 <script>
+import { randomString } from "../utils";
+const addressStrings = [
+  "corporation",
+  "enterprise",
+  "company",
+  "productivity",
+  "business",
+  "office",
+  "computer",
+  "software",
+  "microcomputer",
+  "com",
+  "www",
+  "http",
+  "internet",
+  "dotcom",
+  "surf",
+  "dial-up",
+  "synergy",
+  "product",
+  "service"
+];
+
 export default {
   props: {
     title: String,
@@ -382,9 +405,14 @@ export default {
     status: String
   },
   mounted() {
+    const address = `${randomString(addressStrings)}://${randomString(
+      addressStrings
+    )}.${randomString(addressStrings)}.${randomString(
+      addressStrings
+    )}/${randomString(addressStrings)}.html`;
     this.$emit("loadPage", {
       title: "Corporation Enterprise - Web Voyager",
-      address: "business://corporation.com/enterprise"
+      address: address
     });
   },
   methods: {
