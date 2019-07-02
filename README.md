@@ -2,6 +2,10 @@
 
 ![Web Voyager](./src/assets/logo.png?raw=true "Web Voyager")
 
+> Oh my lord, this codebase is atrocious!
+
+Indeed it is, and so was the internet back in the days.
+
 ## Project setup
 
 ```sh
