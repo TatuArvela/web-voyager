@@ -19,4 +19,4 @@ The power of the internet is in your fingertips! With the **Web Voyager**&trade;
 
 > Oh my lord, this codebase is atrocious!
 
-Indeed it is, and so was the internet back in the days.
+**¯\\\_(ツ)_/¯**
