@@ -37,6 +37,17 @@
         />
       </fragment>
     </div>
+    <PopUp
+      v-for="popUp in popUps"
+      v-bind:key="popUp.id"
+      :id="popUp.id"
+      :isActive="popUp.isActive"
+      :titleString="popUp.titleString"
+      :contentString="popUp.contentString"
+      :buttonString="popUp.buttonString"
+      @activatePopUp="activatePopUp"
+      @closePopUp="closePopUp"
+    />
   </div>
 </template>
 
@@ -47,6 +58,12 @@ import PageNotFound from "./pages/PageNotFound.vue";
 import PortalPage from "./pages/PortalPage.vue";
 import RoomPage from "./pages/RoomPage.vue";
 import VaporwavePage from "./pages/VaporwavePage.vue";
+import PopUp from "./PopUp.vue";
+import {
+  contents as popUpContentStrings,
+  buttons as popUpButtonStrings,
+  titles as popUpTitleStrings
+} from "./popUpStrings";
 
 /*
 Loading phases
@@ -66,7 +83,8 @@ export default {
     PageNotFound,
     PortalPage,
     RoomPage,
-    VaporwavePage
+    VaporwavePage,
+    PopUp
   },
   data: () => {
     return {
@@ -75,12 +93,15 @@ export default {
       status: "Loading...",
       page: null,
       loadingPhase: null,
-      timeout: null
+      timeout: null,
+      popUps: [],
+      idIterator: 0
     };
   },
   mounted() {
     this.loadBrowser();
     this.openRandomPage();
+    this.popUpTimer();
   },
   methods: {
     loadBrowser() {
@@ -122,6 +143,41 @@ export default {
         randomPage = randomString(pages);
       }
       this.page = randomPage;
+    },
+    deactivatePopups() {
+      this.popUps.forEach(popUp => {
+        popUp.isActive = false;
+      });
+    },
+    createPopUp() {
+      this.deactivatePopups();
+      this.popUps.push({
+        id: this.idIterator++,
+        isActive: true,
+        titleString: randomString(popUpTitleStrings),
+        contentString: randomString(popUpContentStrings),
+        buttonString: randomString(popUpButtonStrings)
+      });
+    },
+    activatePopUp(id) {
+      this.deactivatePopups();
+      const array = this.popUps;
+      array.push(
+        array.splice(array.indexOf(array.find(popUp => popUp.id === id)), 1)[0]
+      );
+      this.popUps[this.popUps.length - 1].isActive = true;
+    },
+    closePopUp(id) {
+      this.popUps = this.popUps.filter(function(element) {
+        return element.id !== id;
+      });
+      this.popUps[this.popUps.length - 1].isActive = true;
+    },
+    popUpTimer() {
+      setTimeout(() => {
+        this.createPopUp();
+        this.popUpTimer();
+      }, (Math.floor(Math.random() * 10) + 1) * 500);
     }
   }
 };
@@ -157,6 +213,7 @@ body
   background-repeat: no-repeat
   background-position: center
   cursor: url("./assets/cursor.png"), auto
+  overflow: hidden
   &.loadingPhase-5
     background-color: teal
     background-image: none
@@ -206,7 +263,7 @@ a
   &:before
     top: -2px
     left: -19px
-    background: url("./assets/icon.png")
+    background: url("./assets/file-icon.png")
 
 #browser-addressbar
   .loadingPhase-5 &,
@@ -220,11 +277,17 @@ a
     content: ""
     top: 24px
     left: 4px
-    background: url("./assets/icon.png")
+    background: url("./assets/file-icon.png")
   &:before
     top: 24px
     right: 13px
-    background: url("./assets/icon-animated.gif")
+    background: url("./assets/icon.gif")
+    .loadingPhase-5 &,
+    .loadingPhase-4 &,
+    .loadingPhase-3 &,
+    .loadingPhase-2 &,
+    .loadingPhase-1 &
+      background: url("./assets/icon-animated.gif")
   > #browser-address
     top: 23px
     left: 4px
@@ -253,7 +316,7 @@ a
   &:before
     top: -1px
     left: -20px
-    background: url("./assets/icon.png")
+    background: url("./assets/file-icon.png")
 
 #page
   position: absolute
@@ -275,22 +338,53 @@ a
     animation-name: image-loading
     animation-timing-function: steps(24)
     animation-duration: 2000ms
-  & input
-    border: 1px solid gray
-    border-radius: 0
-    font-family: Arial
-    outline: none
-    font-size: 12px
-    margin-right: 2px
-    &[type="button"]
-      border-style: outset
-      background: lightgray
+input
+  border: 1px solid gray
+  border-radius: 0
+  font-family: Arial
+  outline: none
+  font-size: 13px
+  margin-right: 2px
+  box-shadow: 0.5px 0.5px 0 0.5px #fff, 0 0 0 1px #87888f
+  border-top: 1px solid #000
+  border-left: 1px solid #000
+  border-bottom: 1px solid #c0c7c8
+  border-right: 1px solid #c0c7c8
+input[type="button"], button
+  margin: 2px
+  padding: 2px 4px
+  outline: none
+  box-shadow: -1px -1px 0 0 #fff, 0 -1px 0 0 #fff, -1px 0 0 0 #fff, 0 0 0 1px #000
+  border-top: 1px solid #c0c0c0
+  border-left: 1px solid #c0c0c0
+  border-bottom: 1px solid #87888f
+  border-right: 1px solid #87888f
+  background: #c0c0c0
+  font-family: "Microsoft Sans Serif", sans-serif
+  user-select: none
+  &:focus, &:active
+    box-shadow: -1px -1px 0 0 #000, 0 -1px 0 0 #000, -1px 0 0 0 #000, 0 0 0 1px #000
+  &:focus
+    border-top: 1px solid #fff
+    border-left: 1px solid #fff
+    border-bottom: 1px solid #000
+    border-right: 1px solid #000
+  &:active
+    padding-top: 3px
+    padding-left: 5px
+    padding-right: 3px
+    padding-bottom: 1px
+    border-top: 1px solid #000
+    border-left: 1px solid #000
+    border-bottom: 1px solid #fff
+    border-right: 1px solid #fff
+    background: #c0c0c0
 
 .img-broken
   animation: none !important
   content: url('./assets/broken-image.png')
   padding: 5px
-  border: 1px inset lightgray
+  border: 1px inset #c0c0c0
 
 @keyframes image-loading
   0%
