@@ -158,6 +158,7 @@ export default {
         contentString: randomString(popUpContentStrings),
         buttonString: randomString(popUpButtonStrings)
       });
+      new Audio("CHORD.wav").play();
     },
     activatePopUp(id) {
       this.deactivatePopups();
