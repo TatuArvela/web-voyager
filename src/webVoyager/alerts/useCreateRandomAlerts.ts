@@ -1,4 +1,10 @@
-export const titles = [
+import { useEffect, useRef } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+import { useWebVoyagerContext } from '../context/WebVoyagerContext.ts';
+import chord from './CHORD.wav';
+
+const titles = [
   'Web Voyager',
   'ɹǝƃɐʎoΛ qǝM',
   'Computer Error',
@@ -15,7 +21,7 @@ export const titles = [
   'Oof',
 ];
 
-export const contents = [
+const messages = [
   'Sorry, a system error occurred.\n\
 \n\
 To temporarily turn off extensions, restart and hold down the shift key.',
@@ -65,7 +71,7 @@ Sorry, something went wrong.',
   '？？？',
 ];
 
-export const buttons = [
+const buttonLabels = [
   'OK',
   'No',
   'Cancel',
@@ -78,3 +84,41 @@ export const buttons = [
   '？？？',
   'Oof',
 ];
+
+export const useCreateRandomAlerts = () => {
+  const { addAlert } = useWebVoyagerContext();
+  const timeoutIdRef = useRef<number | null>(null);
+
+  const getRandomElement = (arr: string[]) =>
+    arr[Math.floor(Math.random() * arr.length)];
+
+  useEffect(() => {
+    const createRandomAlert = () => {
+      void new Audio(chord).play();
+      addAlert({
+        buttonLabel: getRandomElement(buttonLabels),
+        id: uuidv4(),
+        message: getRandomElement(messages),
+        title: getRandomElement(titles),
+        positionX: Math.floor(Math.random() * 1000),
+        positionY: Math.floor(Math.random() * 480),
+      });
+    };
+
+    const setRandomTimeout = () => {
+      const interval = Math.random() * (5000 - 500) + 500;
+      timeoutIdRef.current = window.setTimeout(() => {
+        createRandomAlert();
+        setRandomTimeout(); // Schedule the next random alert
+      }, interval);
+    };
+
+    setRandomTimeout();
+
+    return () => {
+      if (timeoutIdRef.current) {
+        clearTimeout(timeoutIdRef.current);
+      }
+    };
+  }, [addAlert]);
+};

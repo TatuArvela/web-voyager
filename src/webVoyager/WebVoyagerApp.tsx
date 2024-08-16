@@ -6,9 +6,12 @@ import {
   WindowContent,
 } from '@tatuarvela/wisp';
 
+import { useCreateRandomAlerts } from './alerts/useCreateRandomAlerts.ts';
 import icons from './assets/icons.ts';
 
 const WebVoyagerApp = () => {
+  useCreateRandomAlerts();
+
   return (
     <>
       <div style={{ paddingBottom: '4px' }}>

@@ -9,7 +9,7 @@ import {
   win9x256Colors,
 } from '@tatuarvela/wisp-win-classic-theme';
 
-import WebVoyagerWindow from './webVoyager/WebVoyagerWindow.tsx';
+import WebVoyager from './webVoyager/WebVoyager.tsx';
 
 const App = () => (
   <div
@@ -38,8 +38,8 @@ const App = () => (
           vaporwin,
         ]}
       >
-        <ThemeSwitcher height={50} />
-        <WebVoyagerWindow />
+        <WebVoyager />
+        <ThemeSwitcher height={50} positionY={20} isMinimized />
       </Wisp>
     </div>
   </div>
