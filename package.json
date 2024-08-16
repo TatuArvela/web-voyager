@@ -11,8 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tatuarvela/wisp": "^3.3.2",
-    "@tatuarvela/wisp-win-classic-theme": "^3.0.5",
+    "@tatuarvela/wisp": "^4.2.1",
+    "@tatuarvela/wisp-win-classic-theme": "^4.2.1",
     "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
