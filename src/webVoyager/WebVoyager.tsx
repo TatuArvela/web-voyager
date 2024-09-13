@@ -8,14 +8,16 @@ import WebVoyagerApp from './WebVoyagerApp.tsx';
 const WebVoyager = () => (
   <WebVoyagerContextProvider>
     <Window
-      id="web-voyager"
-      title="Sakura Web Voyager"
+      alwaysShowCloseButton={true}
       icon={icons.webVoyager}
+      id="web-voyager"
       isClosable={false}
-      isMinimizable={false}
+      isDraggable={false}
       isMaximizable={false}
       isMaximized={true}
-      alwaysShowCloseButton={true}
+      isMinimizable={false}
+      isResizable={false}
+      title="Sakura Web Voyager"
     >
       <WebVoyagerApp />
     </Window>

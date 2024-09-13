@@ -100,8 +100,8 @@ export const useCreateRandomAlerts = () => {
         id: uuidv4(),
         message: getRandomElement(messages),
         title: getRandomElement(titles),
-        positionX: Math.floor(Math.random() * 1000),
-        positionY: Math.floor(Math.random() * 480),
+        positionX: Math.floor(Math.random() * 900),
+        positionY: Math.floor(Math.random() * 500),
       });
     };
 
